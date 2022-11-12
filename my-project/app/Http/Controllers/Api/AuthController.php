@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Registration\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +16,7 @@ class AuthController extends Controller
     /**
      * Create User
      * @param Request $request
-     * @return User
+     * @return JsonResponse
      */
     public function createUser(Request $request)
     {
@@ -24,7 +26,14 @@ class AuthController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required'
+                'password' => 'required',
+                'surname' => 'required',
+                'nickname' => 'required',
+                'phone' => 'required',
+                'adress' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'zip' => 'required|numeric|min_digits:5|max_digits:5'
             ]);
 
             if($validateUser->fails()){
@@ -38,7 +47,15 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'username' => Helper::generate_username($request->name, $request->surname),
+                'surname' => $request->surname,
+                'nickname' => $request->nickname,
+                'phone' => $request->phone,
+                'adress' => $request->adress,
+                'city' => $request->city,
+                'state' => $request->state,
+                'zip' => $request->zip,
             ]);
 
             return response()->json([
@@ -58,7 +75,7 @@ class AuthController extends Controller
     /**
      * Login The User
      * @param Request $request
-     * @return User
+     * @return JsonResponse
      */
     public function loginUser(Request $request)
     {
