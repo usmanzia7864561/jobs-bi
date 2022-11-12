@@ -5,9 +5,9 @@ services:
     image: docker.io/bitnami/mariadb:10.6
     environment:
       - MARIADB_ROOT_PASSWORD=root
-      - MARIADB_PASSWORD=bn_myapp
-      - MARIADB_USER=bn_myapp
-      - MARIADB_DATABASE=bitnami_myapp
+      - MARIADB_PASSWORD=bi
+      - MARIADB_USER=bi
+      - MARIADB_DATABASE=bi
   
   adminer:
     image: adminer
@@ -26,8 +26,9 @@ services:
     environment:
       - DB_HOST=mariadb
       - DB_PORT=3306
-      - DB_USERNAME=bn_myapp
-      - DB_DATABASE=bitnami_myapp
+      - DB_USERNAME=bi
+      - DB_DATABASE=bi
+      - DB_PASSWORD=bi
     volumes:
       - './my-project:/app'
     depends_on:
