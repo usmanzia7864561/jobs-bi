@@ -45,3 +45,10 @@ trash bin.
    - Admin can restore comment or blog post
 Use Migration and Seed to create database and record. Database should contain at least 50k users, 1000
 blogposts and every blogpost have at least 50 comments.
+
+## Solving
+
+
+### Docker
+
+Docker for laravel by https://hub.docker.com/r/bitnami/laravel/
