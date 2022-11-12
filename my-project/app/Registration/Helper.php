@@ -5,11 +5,10 @@ namespace App\Registration;
 class Helper {
     public static function generate_username(String $name, String $surname)
     {
+        $text = $surname . mb_substr($name, 0, 3);
 
-        $text = $surname . substr($name, 0, 3);
+        $ascii = iconv("utf-8", "us-ascii//TRANSLIT", $text);
 
-        setlocale(LC_ALL, 'czech'); // záleží na použitém systému
-
-        return iconv("utf-8", "us-ascii//TRANSLIT", strtolower($text));
+        return strtolower($ascii);
     }
 }
