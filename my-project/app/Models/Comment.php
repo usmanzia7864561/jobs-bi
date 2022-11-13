@@ -19,10 +19,9 @@ class Comment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'comment',
         'author_id',
-        'subject',
-        'description'
+        'post_id'
     ];
 
     public function author()

@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +24,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(PostController::class)->group(function () {
     Route::get('/posts/{id}', 'showPost');
     Route::get('/posts', 'listPosts');
+    Route::post('/posts', 'create')->middleware('auth:sanctum');
 });
 
-Route::get('/comments', [CommentController::class, 'listComments']);
+Route::controller(CommentController::class)->group(function () {
+    Route::get('/comments/', 'list');
+    Route::get('/comments/{id}', 'show');
+    Route::post('/comments', 'create')->middleware('auth:sanctum');
+});
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);

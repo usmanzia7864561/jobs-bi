@@ -14,7 +14,7 @@ additional functionality or design. But what is written below is a must.
 - Create an API with public endpoints that will support the following points:
   - Create a simple login/register page for the user
     - Use form validation for registration form
-  X  Registration form must contain:
+  - X Registration form must contain:
     -  Name
     -  Surname
     -  Nickname
@@ -24,13 +24,13 @@ additional functionality or design. But what is written below is a must.
     -  City
     -  State
     -  ZIP
-  X  Generate the Username from full surname and 3 letter from first name
+  - X Generate the Username from full surname and 3 letter from first name
     - Example: Johnny Depp will have username “deppjoh”
   -  Logged user can add new comment
-      X Maximum length for comment is 255 characters
+      - X Maximum length for comment is 255 characters
       - Provide login and password for example user
   -  Logged user which is Moderator can create a blogposts
-      X Maximum length for subject on the new blog post is 64 characters
+      - X Maximum length for subject on the new blog post is 64 characters
       - Provide login and password for example user
   -  Logged user which is Administrator can delete post or comment.
       - Provide login and password for example user

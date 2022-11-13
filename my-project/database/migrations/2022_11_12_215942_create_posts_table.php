@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('subject');
             $table->text('description');
             $table->foreignIdFor(User::class, 'author_id');
             $table->softDeletes();
