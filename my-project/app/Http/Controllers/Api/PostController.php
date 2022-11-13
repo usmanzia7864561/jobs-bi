@@ -19,6 +19,7 @@ class PostController extends Controller
     public function listPosts(Request $request)
     {
         $posts = Post::withCount(['comments'])->get();
+        dd($posts->sortByDesc('comments_count'));
 
         return response()->json($posts->load('author')->toArray(), 200);
     }
