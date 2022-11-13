@@ -27,10 +27,10 @@ additional functionality or design. But what is written below is a must.
   X  Generate the Username from full surname and 3 letter from first name
     - Example: Johnny Depp will have username “deppjoh”
   -  Logged user can add new comment
-      - Maximum length for comment is 255 characters
+      X Maximum length for comment is 255 characters
       - Provide login and password for example user
   -  Logged user which is Moderator can create a blogposts
-      - Maximum length for subject on the new blog post is 64 characters
+      X Maximum length for subject on the new blog post is 64 characters
       - Provide login and password for example user
   -  Logged user which is Administrator can delete post or comment.
       - Provide login and password for example user

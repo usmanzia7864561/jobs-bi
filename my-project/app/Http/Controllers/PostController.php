@@ -9,7 +9,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     /**
-     * Create User
+     * List Posts
      * @param Request $request
      * @return JsonResponse
      */
@@ -18,10 +18,16 @@ class PostController extends Controller
         $posts = Post::all();
 
         return response()->json($posts->load('author')->toArray(), 200);
+    }
+    /**
+     * Show Post
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showPost($id)
+    {
+        $post = Post::findOrFail($id);
 
-        return response()->json(Rai::where(function($query) use ($user_id){
-            $query->where('user_id', $user_id)->orWhere('user_id', NULL);
-        })->where('annee', $annee)->where('mois', $mois)->where('code', $code)->where('deleted_at', null)->get());
-
+        return response()->json($post->load('author')->toArray(), 200);
     }
 }
