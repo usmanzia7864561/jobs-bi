@@ -39,8 +39,8 @@ class CommentController extends Controller
         try {
             $validate = Validator::make($request->all(),
             [
-                'title' => 'required|max:64',
-                'description' => 'required'
+                'comment' => 'required|max:255',
+                'post_id' => 'required|exists:posts,id'
             ]);
 
             if($validate->fails()){
@@ -52,14 +52,14 @@ class CommentController extends Controller
             }
 
             Comment::create([
-                'title' => $request->title,
-                'description' => $request->description,
+                'comment' => $request->comment,
+                'post_id' => $request->post_id,
                 'author_id' => $request->user()->id
             ]);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Post Created Successfully'
+                'message' => 'Comment Created Successfully'
             ], 200);
 
         } catch (\Throwable $th) {

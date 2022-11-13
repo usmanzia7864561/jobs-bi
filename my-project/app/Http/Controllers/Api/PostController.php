@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function listPosts(Request $request)
     {
-        $posts = Post::all();
+        $posts = Post::withCount(['comments'])->get();
 
         return response()->json($posts->load('author')->toArray(), 200);
     }
@@ -40,8 +40,8 @@ class PostController extends Controller
         try {
             $validate = Validator::make($request->all(),
             [
-                'comment' => 'required|max:255',
-                'post_id' => 'required|exists:posts,id'
+                'title' => 'required|max:64',
+                'description' => 'required'
             ]);
 
             if($validate->fails()){
@@ -53,14 +53,14 @@ class PostController extends Controller
             }
 
             Post::create([
-                'comment' => $request->comment,
-                'post_id' => $request->post_id,
+                'title' => $request->title,
+                'description' => $request->description,
                 'author_id' => $request->user()->id
             ]);
 
             return response()->json([
                 'status' => true,
-                'message' => 'Comment Created Successfully'
+                'message' => 'Post Created Successfully'
             ], 200);
 
         } catch (\Throwable $th) {

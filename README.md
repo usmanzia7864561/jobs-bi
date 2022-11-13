@@ -34,11 +34,11 @@ additional functionality or design. But what is written below is a must.
       - Provide login and password for example user
   -  Logged user which is Administrator can delete post or comment.
       - Provide login and password for example user
-  -  Blog feed should list all posts and associated title, author, date, description, and total comments. It
+  - X Blog feed should list all posts and associated title, author, date, description, and total comments. It
   should be sorted by overall number of comments.
-  -  Users can view individual blog posts in a separate page
-  -  Users can view comments for a blog post
-  -  When deleting the comment or blog post it should be soft-deleted and moved to the trash bin from
+  - X Users can view individual blog posts in a separate page
+  - X Users can view comments for a blog post
+  - X When deleting the comment or blog post it should be soft-deleted and moved to the trash bin from
   which can be deleted permanently.
      - The comment or blog post older than 3 hours should be deleted automatically and put into
   trash bin.
