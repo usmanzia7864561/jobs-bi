@@ -37,6 +37,7 @@ class CommentController extends Controller
     /**
      * Show Comment
      *
+     * @param Comment $comment
      * @return JsonResponse
      */
     public function show(Comment $comment)
@@ -78,5 +79,25 @@ class CommentController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+    /**
+     * Show Comment
+     *
+     * @return JsonResponse
+     */
+    public function destroy(Comment $comment)
+    {
+        return response()->json($comment->delete(), 200);
+    }
+
+    /**
+     * Show Comment
+     *
+     * @return JsonResponse
+     */
+    public function restore(Comment $comment)
+    {
+        return response()->json($comment->restore(), 200);
     }
 }

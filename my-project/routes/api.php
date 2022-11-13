@@ -21,21 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(PostController::class)->middleware('auth:sanctum')->group(function () {
-    Route::get('/posts', 'list');
-    Route::post('/posts', 'create');
-    Route::get('/posts/{id}', 'show');
-});
+Route::resource('posts', PostController::class)->middleware('auth:sanctum')->only([
+    'index', 'show', 'store', 'destroy'
+]);
 
-// Route::controller(CommentController::class)->middleware('auth:sanctum')->group(function () {
-//     Route::get('/comments', 'list');
-//     Route::post('/comments', 'create');
-//     Route::get('/comments/{id}', 'show');
-// });
+Route::middleware('auth:sanctum')->patch(
+    '/posts/{post}/restore',
+    [PostController::class, 'restore']
+)->middleware('can:restore,post')->withTrashed();
 
 Route::resource('comments', CommentController::class)->middleware('auth:sanctum')->only([
-    'index', 'show', 'store'
+    'index', 'show', 'store', 'destroy'
 ]);
+
+Route::middleware('auth:sanctum')->patch(
+    '/comments/{comment}/restore',
+    [CommentController::class, 'restore']
+)->middleware('can:restore,comment')->withTrashed();
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);

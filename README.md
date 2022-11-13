@@ -26,16 +26,16 @@ additional functionality or design. But what is written below is a must.
     -  ZIP
   - X Generate the Username from full surname and 3 letter from first name
     - Example: Johnny Depp will have username “deppjoh”
-  -  Logged user can add new comment
-      - X Maximum length for comment is 255 characters
-      - Provide login and password for example user
-  -  Logged user which is Moderator can create a blogposts
+  - X  Logged user can add new comment
+      - Maximum length for comment is 255 characters
+      - ! Provide login and password for example user
+  - X Logged user which is Moderator can create a blogposts
       - X Maximum length for subject on the new blog post is 64 characters
-      - Provide login and password for example user
+      - ! Provide login and password for example user
   -  Logged user which is Administrator can delete post or comment.
-      - Provide login and password for example user
+      - ! Provide login and password for example user
   - X Blog feed should list all posts and associated title, author, date, description, and total comments.
-    - X It should be sorted by overall number of comments.
+    - It should be sorted by overall number of comments.
   - X Users can view individual blog posts in a separate page
   - X Users can view comments for a blog post
   - X When deleting the comment or blog post it should be soft-deleted and moved to the trash bin from

@@ -67,7 +67,6 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        ddd($user->role);
         return $user->role == UserRoleEnum::ADMIN;
     }
 
@@ -80,7 +79,6 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        ddd($user->role);
         return $user->role == UserRoleEnum::ADMIN;
     }
 
@@ -93,7 +91,6 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        ddd($user->role);
         return $user->role == UserRoleEnum::ADMIN;
     }
 }

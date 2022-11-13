@@ -12,11 +12,21 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
+    /**
      * List Posts
      * @param Request $request
      * @return JsonResponse
      */
-    public function list(Request $request)
+    public function index(Request $request)
     {
         $posts = Post::withCount(['comments'])->get();
         dd($posts->sortByDesc('comments_count'));
@@ -26,17 +36,15 @@ class PostController extends Controller
 
     /**
      * Show Post
-     * @param Request $request
+     * @param Post $post
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         return response()->json($post->load('author')->toArray(), 200);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         try {
             $validate = Validator::make($request->all(),
@@ -70,5 +78,25 @@ class PostController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+    /**
+     * Show Post
+     *
+     * @return JsonResponse
+     */
+    public function destroy(Post $post)
+    {
+        return response()->json($post->delete(), 200);
+    }
+
+    /**
+     * Show Post
+     *
+     * @return JsonResponse
+     */
+    public function restore(Post $post)
+    {
+        return response()->json($post->restore(), 200);
     }
 }
