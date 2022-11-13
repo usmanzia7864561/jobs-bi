@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Enum\UserRoleEnum;
 
 class CommentPolicy
 {
@@ -18,7 +19,7 @@ class CommentPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +31,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +42,7 @@ class CommentPolicy
      */
     public function create(User $user)
     {
-        //
+        return TRUE;
     }
 
     /**
@@ -53,7 +54,8 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        //
+        ddd($user->role);
+        return $user->role == UserRoleEnum::ADMIN;
     }
 
     /**
@@ -65,7 +67,8 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        //
+        ddd($user->role);
+        return $user->role == UserRoleEnum::ADMIN;
     }
 
     /**
@@ -77,7 +80,8 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        //
+        ddd($user->role);
+        return $user->role == UserRoleEnum::ADMIN;
     }
 
     /**
@@ -89,6 +93,7 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        //
+        ddd($user->role);
+        return $user->role == UserRoleEnum::ADMIN;
     }
 }

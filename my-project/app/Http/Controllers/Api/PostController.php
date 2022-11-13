@@ -16,7 +16,7 @@ class PostController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function listPosts(Request $request)
+    public function list(Request $request)
     {
         $posts = Post::withCount(['comments'])->get();
         dd($posts->sortByDesc('comments_count'));
@@ -29,7 +29,7 @@ class PostController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function showPost($id)
+    public function show($id)
     {
         $post = Post::findOrFail($id);
 

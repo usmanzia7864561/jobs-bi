@@ -6,16 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Comment;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Enum\UserRoleEnum;
 
 class CommentController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Comment::class, 'comment');
+    }
+
     /**
      * List Comment
      * @param Request $request
      * @return JsonResponse
      */
-    public function list(Request $request)
+    public function index(Request $request)
     {
         $posts = Comment::all();
 
@@ -24,17 +36,15 @@ class CommentController extends Controller
 
     /**
      * Show Comment
-     * @param Request $request
+     *
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        $comment = Comment::findOrFail($id);
-
         return response()->json($comment->load(['post', 'author'])->toArray(), 200);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         try {
             $validate = Validator::make($request->all(),

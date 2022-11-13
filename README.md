@@ -12,7 +12,7 @@
 We are looking for all the requirements to be submitted. This is your chance to impress us, so feel free to add
 additional functionality or design. But what is written below is a must.
 - Create an API with public endpoints that will support the following points:
-  - Create a simple login/register page for the user
+  - X Create a simple login/register page for the user
     - Use form validation for registration form
   - X Registration form must contain:
     -  Name
@@ -40,13 +40,24 @@ additional functionality or design. But what is written below is a must.
   - X Users can view comments for a blog post
   - X When deleting the comment or blog post it should be soft-deleted and moved to the trash bin from
   which can be deleted permanently.
-     - The comment or blog post older than 3 hours should be deleted automatically and put into
+     - X The comment or blog post older than 3 hours should be deleted automatically and put into
   trash bin.
      - Admin can restore comment or blog post
 Use Migration and Seed to create database and record. Database should contain at least 50k users, 1000
 blogposts and every blogpost have at least 50 comments.
 
 ## Solving
+
+I used for solving laravel documentation, laracast pages, stackoverflow or google.
+
+### Provided users
+
+#### Admin
+
+``
+
+#### Moderator
+#### User
 
 
 ### Docker
