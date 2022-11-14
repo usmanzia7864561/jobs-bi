@@ -17,7 +17,16 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'comment' => fake()->text(50)
+        ];
+
+        return [
+            'user_id' => User::factory(),
+            'user_type' => function (array $attributes) {
+                return User::find($attributes['user_id'])->type;
+            },
+            'title' => fake()->title(),
+            'content' => fake()->paragraph(),
         ];
     }
 }

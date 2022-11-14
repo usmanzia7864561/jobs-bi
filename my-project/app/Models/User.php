@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enum\UserRoleEnum;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -57,6 +58,6 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('Post');
+        return $this->hasMany(Post::class, 'author_id');
     }
 }
